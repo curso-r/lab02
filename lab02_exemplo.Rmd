@@ -1,0 +1,277 @@
+---
+title: Aula 06 - Laboratório II
+date : 2015-01-30
+--- 
+
+# Questões iniciais
+
+## Sobre dplyr e tidyr
+
+```{r}
+library(nycflights13)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(lubridate)
+library(stringr)
+```
+
+
+```{r}
+flights <- tbl_df(flights)
+```
+
+### filter
+
+1. Atribua a uma tabela apenas os voos de janeiro de 2013.
+
+```{r}
+# código aqui
+```
+
+2. Atribua a uma tabela apenas os voos de janeiro ou fevereiro de 2013.
+
+```{r}
+# código aqui
+```
+
+### select
+
+1. Atribua a uma tabela apenas as colunas `month` e `dep_delay`.
+
+```{r}
+# código aqui
+```
+
+
+2. Atribua a uma tabela apenas as colunas `month` e `dep_delay`, os nomes dessas colunas devem ser `mes`e `atraso`.
+
+```{r}
+# código aqui
+```
+
+### mutate
+
+1. Calcule as colunas `ganho_de_tempo` que é dado por `dep_delay - arr_delay` e `velocidade` dada por `distance / air_time * 60`.
+
+```{r}
+# código aqui
+```
+
+### summarise
+
+1. Calcule a média da distância de todos os vôos.
+
+```{r}
+# código aqui
+```
+
+
+2. Calcule a média da distância dos vôos por mês.
+
+```{r}
+# código aqui
+```
+
+### arrange
+
+1. Ordene a base de dados pelo atraso na partida em ordem crescente.
+
+```{r}
+# código aqui
+```
+
+2. Repita a questão anterior, poém na ordem decrescente.
+
+```{r}
+# código aqui
+```
+
+### gather
+
+### spread
+
+### desafios (opcional)
+
+1. Sumarise em uma tabela qual foi a média de atraso total (`dep_delay + arr_delay`) e seu intervalo de confiança por mês, apenas considerando os vôos que atrasaram (tempos negativos não são atrasos).
+Dica: o intervalo de confiança pode ser calculado por $média \pm 1,96*\sqrt{\frac{var(x)}{n}}$
+
+```{r}
+# código aqui
+```
+
+2. Sumarise em uma tabela quais foram os destinos com mais viagens com atraso superior a 60 minutos. Considere o ataraso total definido na pergunta anterior.
+
+```{r}
+# código aqui
+```
+
+---
+
+## Sobre ggplot2
+
+```{r}
+data(diamonds)
+diamonds <- diamonds %>% tbl_df
+```
+
+### geom_point
+
+### geom_line
+
+### geom_histogram
+
+### geom_boxplot
+
+### geom_bar
+
+### facet_wrap
+
+### facet_grid
+
+### desafios (opcional)
+
+---
+
+# Desafios com bases de dados reais (apagar o que não for fazer)
+
+## PNUD
+
+```{r}
+load('data/pnud_muni.RData')
+```
+
+**1** Refaça todas as análises do laboratório 1 usando `dplyr` e `ggplot2`.
+
+### Parte 1
+
+```{r}
+# código aqui
+```
+
+### Parte 2
+
+```{r}
+# código aqui
+```
+
+
+## Coalitions
+
+```{r}
+load('data/wto_data.RData')
+load('data/wto_dyad_sample.RData')
+```
+
+**1** Faça um mapa com as posições geográficas dos países, com um mapa múndi no fundo.
+
+```{r}
+# código aqui
+```
+
+**2**. Qual é a unidade observacional (o que identifica uma observação) na base `wto_data`?
+
+```{r}
+# código aqui
+```
+
+**3**. Quantas coalizões tivemos em cada ano?
+
+```{r}
+# código aqui
+```
+
+**4**. Qual é o código do país que entrou mais vezes em alguma coalizão?
+
+```{r}
+# código aqui
+```
+
+**5**. Construa uma matriz de adjacências usando `dplyr` e `tidyr`. Queremos um `data.frame` `wto_adj` com número de linhas igual ao número de colunas, e o conteúdo da célula `wto_adj[i, j]` é `1` se o país da linha entra em coalizão com o país da coluna em dado ano e dada coalizão, e `0` caso contrário. Utilize a função `row.names()` para atribuir os nomes às linhas.
+
+```{r}
+# código aqui
+```
+
+## CARF
+
+```{r}
+load('data/carf.RData')
+```
+
+**1** Quantos processos temos na base de dados?
+
+```{r}
+# código aqui
+```
+
+**2** Construa um gráfico contendo o volume de acórdãos em cada ano. Você nota algum ano com comportamento estranho?
+
+```{r}
+# código aqui
+```
+
+**3** Agora retire da base os acórdãos que contêm texto da decisão e texto da ementa vazios. Refaça o gráfico e interprete.
+
+```{r}
+# código aqui
+```
+
+**4** Utilizando a função `str_detect()`, crie colunas (que valem `TRUE` ou `FALSE`) na base de dados de acordo com as expressões regulares abaixo.
+
+```{r eval=FALSE}
+negar_provimento <- 'negar?(do)? (o )?provimento|negou se (o )?provimento|recurso nao provido'
+dar_provimento <- 'dar?(do)? (o )?provimento|deu se (o )?provimento|recurso provido'
+em_parte <- 'em parte|parcial'
+diligencia <- 'diligencia'
+nao_conhecer <- 'conhec'
+anular <- 'nul(a|o|i)'
+```
+
+```{r}
+# código aqui
+```
+
+**5** Faça um gráfico de barras mostrando a quantidade de acórdãos em que foi dado provimento, negado provimento, etc. Considere somente os casos em que `tipo_recurso` é recurso voluntário.
+
+```{r}
+# código aqui
+```
+
+## SABESP
+
+```{r}
+load('data/sabesp.RData')
+```
+
+**1** Descreva a base de dados.
+
+```{r}
+# código aqui
+```
+
+**2** Crie um boxplot por mês, mostrando os lugares separadamente.
+
+```{r}
+# código aqui
+```
+
+**3** Tente montar um gráfico parecido com esse (inclusive as cores e as labels inclinadas do eixo x). Não vale olhar o código do repositório no github!
+
+```{r}
+# código aqui
+```
+
+**4** Construa uma tabela descritiva contendo a média, mediana, desvio padrão, primeiro e terceiro quartis em relação à pluviometria, agrupando por ano e por lugar.
+
+```{r}
+# código aqui
+```
+
+**5** Comente sobre a crise hídrica em São Paulo com base em conhecimentos próprios e usando os dados da sabesp.
+
+```{r}
+# código aqui
+```
+
+Texto aqui
