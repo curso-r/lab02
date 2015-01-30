@@ -35,6 +35,13 @@ flights <- tbl_df(flights)
 # código aqui
 ```
 
+
+3. Atribua a uma tabela apenas os vôos com distância maior do que 1000 milhas.
+
+```{r}
+# código aqui
+```
+
 ### select
 
 1. Atribua a uma tabela apenas as colunas `month` e `dep_delay`.
@@ -50,9 +57,27 @@ flights <- tbl_df(flights)
 # código aqui
 ```
 
+
+3. Retire da tabela as colunas `tailnum`, `origin` e `dest`
+
+```{r}
+# código aqui
+```
+
+
+
 ### mutate
 
 1. Calcule as colunas `ganho_de_tempo` que é dado por `dep_delay - arr_delay` e `velocidade` dada por `distance / air_time * 60`.
+
+
+```{r}
+# código aqui
+```
+
+
+
+2. Calcule o horário de chegada considerando as colunas `hour`, `minute` e `air_time`. A tabela deve conter duas colunas novas: `hour2` com a hora de chegada e `minute2` com o minuto de chegada.
 
 ```{r}
 # código aqui
@@ -66,12 +91,18 @@ flights <- tbl_df(flights)
 # código aqui
 ```
 
-
 2. Calcule a média da distância dos vôos por mês.
 
 ```{r}
 # código aqui
 ```
+
+3. Calcule a média, mediana, primeiro quartil e terceiro quartil do tempo de viagem por mês.
+
+```{r}
+# código aqui
+```
+
 
 ### arrange
 
@@ -81,7 +112,24 @@ flights <- tbl_df(flights)
 # código aqui
 ```
 
-2. Repita a questão anterior, poém na ordem decrescente.
+
+2. Repita a questão anterior, porém na ordem decrescente.
+
+```{r}
+# código aqui
+```
+
+
+
+### spread
+
+1. Crie uma tabela em que cada linha é um dia e cada coluna é o atraso médio de partida por mês.
+
+```{r}
+# código aqui
+```
+
+2. Repita a mesma operação, mas dessa vez cada coluna será uma hora do dia.
 
 ```{r}
 # código aqui
@@ -89,22 +137,37 @@ flights <- tbl_df(flights)
 
 ### gather
 
-### spread
+Considerando as tabelas criadas nas perguntas sobre o `spread`:
+
+1. Transforme-as em um formato tidy.
+
+```{r}
+# código aqui
+```
+
+
+```{r}
+# código aqui
+```
 
 ### desafios (opcional)
 
 1. Sumarise em uma tabela qual foi a média de atraso total (`dep_delay + arr_delay`) e seu intervalo de confiança por mês, apenas considerando os vôos que atrasaram (tempos negativos não são atrasos).
 Dica: o intervalo de confiança pode ser calculado por $média \pm 1,96*\sqrt{\frac{var(x)}{n}}$
 
-```{r}
-# código aqui
-```
-
-2. Sumarise em uma tabela quais foram os destinos com mais viagens com atraso superior a 60 minutos. Considere o ataraso total definido na pergunta anterior.
 
 ```{r}
 # código aqui
 ```
+
+
+2. Summarise em uma tabela quais foram os 10 destinos com mais viagens com atraso superior a 60 minutos. Considere o atraso total definido na pergunta anterior.
+
+
+```{r}
+# código aqui
+```
+
 
 ---
 
